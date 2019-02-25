@@ -4,17 +4,19 @@ const passwords = ["qwerty", "111qwe", "123123", "r4nd0mp4zzw0rd"];
 let attempts = 3;
 let max = passwords.length;
 let userInput;
+let hasPassword = false;
 
-for (let i = 0; i < max; i += i) {
   do {
+    attempts = attempts - 1;
     const userInput = prompt("Please enter your password");
-    if (userInput !== passwords[i]) {
-      attempts = attempts - 1;
+    if (!passwords.includes(userInput)) {
       alert(`You have ${attempts} attempts left`);
-    } else if (userInput === passwords[i]) {
+    } else {
       alert("Congratulations!");
-    } else if (attempts === 0) {
+      break;
+    } 
+    if (attempts === 0) {
       alert("You have no more attempts left, your account is blocked");
     }
-  } while (userInput !== null && attempts >= 0);
-}
+    console.log(userInput);
+  } while (userInput !== null && attempts > 0);
