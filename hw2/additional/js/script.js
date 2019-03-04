@@ -17,6 +17,7 @@ let hasPassword = false;
     } 
     if (attempts === 0) {
       alert("You have no more attempts left, your account is blocked");
+      break;
     }
     console.log(userInput);
-  } while (userInput !== null && attempts > 0);
+  } while (userInput !== null);
