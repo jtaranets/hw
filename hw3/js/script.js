@@ -3,12 +3,10 @@
 const logins = ["Mango", "robotGoogles", "Poly", "Aj4x1sBozz", "qwerty123"];
 
 function isLoginValid(login) {
-  let validLogin;
   return login.length >= 4 && login.length <= 16;
 }
 
 const isLoginUnique = function(logins, login) {
-  let uniqueLogin;
   return logins.includes(login);
 };
 
