@@ -4,39 +4,27 @@ const logins = ["Mango", "robotGoogles", "Poly", "Aj4x1sBozz", "qwerty123"];
 
 function isLoginValid(login) {
   let validLogin;
-  if (login.length >= 4 && login.length <= 16) {
-    return true;
-  } else {
-    return false;
-  }
+  return login.length >= 4 && login.length <= 16;
 }
 
 const isLoginUnique = function(logins, login) {
   let uniqueLogin;
-  if (logins.includes(login)) {
-   return false;
-  } else {
-    return true;
-  }
+  return logins.includes(login);
 };
 
 const addLogin = function(logins, login) {
   if (!isLoginValid(login)) {
     return alert("Ошибка! Логин должен быть от 4 до 16 символов");
-  } else {
-    const canProceed = true;
-    if (!isLoginUnique(logins, login)) {
-      return alert("Такой логин уже используется!");
-    } else {
-      logins.push(login);
-      return alert("Логин успешно добавлен!");
-    }
   }
+  if (isLoginUnique(logins, login)) {
+    return alert("Такой логин уже используется!");
+  }
+  logins.push(login);
+  return alert("Логин успешно добавлен!");
+
+  
   return logins;
 };
-
-
-
 
 addLogin(logins, "Ajax"); // 'Логин успешно добавлен!'
 addLogin(logins, "robotGoogles"); // 'Такой логин уже используется!'
