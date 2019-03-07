@@ -19,9 +19,6 @@ const addLogin = function(logins, login) {
   }
   logins.push(login);
   return alert("Логин успешно добавлен!");
-
-  
-  return logins;
 };
 
 addLogin(logins, "Ajax"); // 'Логин успешно добавлен!'
