@@ -17,7 +17,8 @@ const Cashier = function(name, productDatabase) {
   };
   this.totalPrice = 0;
   this.countTotalPrice = function(order) {
-    for (const key in order) {
+    const keys = Object.keys(order);
+    for (const key of keys) {
       this.totalPrice += order[key] * this.productDatabase[key];
     }
     return this.totalPrice;
@@ -41,6 +42,12 @@ const Cashier = function(name, productDatabase) {
     this.customerMoney = 0;
   };
 };
+
+
+
+
+
+
 
 /* Заказ пользователя хранится в виде объекта следующего формата. "имя-продукта":"количество-единиц" */
 const order = {
