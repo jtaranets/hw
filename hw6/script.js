@@ -66,9 +66,6 @@ class Hamburger {
    *
    * Попробуйте сделать это геттером чтобы можно было обращаться как obj.toppings и нам вернет массив добавок
    */
-  get getToppings(){
-    return this._toppings;
-  }
   
   getToppings() {
     return this._toppings;
@@ -80,13 +77,11 @@ class Hamburger {
    *
    * Попробуйте сделать это геттером чтобы можно было обращаться как obj.size и нам вернет размер
    */
-  get sizeHam(){
+  
+  
+  getSize() {
     return this._size;
   }
-  
-  // getSize() {
-  //   return this._size;
-  // }
 
   /**
    * Узнать начинку гамбургера
@@ -218,7 +213,7 @@ hamburger.removeTopping(Hamburger.TOPPING_SPICE);
 
 // Смотрим сколько добавок
 console.log("Hamburger has %d toppings", hamburger.getToppings().length); // 1
-console.log(hamburger.sizeHam);
+console.log(hamburger.getSize());
 
 /*
   🔔 Обратите внимание на такие моменты:
