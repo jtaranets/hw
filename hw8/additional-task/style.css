@@ -1,0 +1,23 @@
+.preview{
+    display: flex;
+    width: 1200px;
+}
+
+li{
+    width: 300px;
+    list-style: none;
+}
+img{
+    width: 100%;
+    height: auto;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.image-gallery{
+    margin: 0 auto;
+    width: 1200px;
+}

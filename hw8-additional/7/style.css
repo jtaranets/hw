@@ -1,0 +1,36 @@
+
+
+  /* ======================= 7 ================ */
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .input-list {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    outline: 1px solid teal;
+  }
+  
+  .input {
+    padding: 4px 8px;
+    font-size: 32px;
+    margin-bottom: 8px;
+    font-family: inherit;
+  }
+  
+  .input.valid {
+    outline: 3px solid #4CAF50;
+  }
+  
+  .input.invalid {
+    outline: 3px solid #F44336;
+  }
+
+
+  
