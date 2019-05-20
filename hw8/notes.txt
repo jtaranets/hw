@@ -86,3 +86,7 @@ new Gallery({
 
 /* Далее плагин работает в автономном режиме */
 view rawjs-hw-module-08.js hosted with ❤ by GitHub
+
+
+
+

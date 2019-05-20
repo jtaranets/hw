@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="data">
+        <ul class="list"></ul>
+      </div>
+      <form class="main-form">
+        <button class="btn getAllUsers">Get All Users</button>
+        <div class="userByIdBox">
+          <button class="btn getUserById">Get User By Id</button>
+          <input
+            type="text"
+            placeholder="type ID here"
+            class="getID-input input"
+          />
+        </div>
+        <div class="addUSerBox">
+          <button class="btn addUser">Add User</button>
+          <input
+            type="text"
+            placeholder="type name here"
+            class="input name-input"
+          />
+          <input
+            type="text"
+            placeholder="type age here"
+            class="input age-input"
+          />
+        </div>
+        <div class="removeUSerBox">
+          <button class="btn removeUser">Remove User</button>
+          <input
+            type="text"
+            placeholder="type ID here"
+            class="removeID-input input"
+          />
+        </div>
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

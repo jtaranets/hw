@@ -1,0 +1,64 @@
+@font-face {
+  font-family: "Lato";
+  src: url("lato-v15-latin-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Nanum Gothic";
+  src: url("nanum-gothic-v16-latin-regular.woff2") format("woff2");
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.data {
+  height: 100vh;
+  width: 700px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.list{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    list-style: none;
+}
+
+.main-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  width: 50%;
+}
+
+.btn {
+  padding: 12px 12px;
+  background-color: #70c8e5;
+  color: #edf4f7;
+  border-color: #70c8e5;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: "Lato", sans-serif;
+  width: 176px;
+}
+
+.input::placeholder,
+.input {
+  font-family: "Lato", sans-serif;
+}
+
+.data,
+.list {
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+
+
