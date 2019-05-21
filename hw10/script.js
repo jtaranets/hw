@@ -10,8 +10,11 @@ const getIdInput = document.querySelector(".getID-input");
 const nameInput = document.querySelector(".name-input");
 const ageInput = document.querySelector(".age-input");
 const removeIdInput = document.querySelector(".removeID-input");
+const inputs = document.querySelectorAll(".input");
+const arrInputs = Array.from(inputs);
 const result = document.querySelector(".data");
-const list = document.querySelector(".list");
+
+console.log(arrInputs);
 
 form.addEventListener("click", getAllUsers);
 form.addEventListener("click", getUserById);
@@ -21,7 +24,12 @@ form.addEventListener("click", removeUser);
 function getAllUsers(event) {
   event.preventDefault();
   if (event.target === allUsersBtn) {
+    result.textContent = "";
+    const list = document.createElement("ul");
+    list.classList.add("list");
+    result.append(list);
     console.log("get all users");
+    arrInputs.map(el => el.value = "");
     fetch(url)
       .then(res => {
         if (res.ok) return res.json();
@@ -34,15 +42,22 @@ function getAllUsers(event) {
             `<li>ID: ${el.id} <br> Name: ${el.name} <br> Age: ${el.age}</li>`,
           ""
         );
-        list.innerHTML = `<strong>All users:</strong> ${result}`;
+        list.innerHTML = `<h2 class="list-title">All users:</h2>${result}`;
       })
       .catch(er => console.log(er));
   }
+
 }
 
 function getUserById(event) {
   event.preventDefault();
   if (event.target === userByIdBtn) {
+    result.textContent = "";
+    arrInputs.map(el => {
+      if(el !== getIdInput){
+        el.value = "";
+      }
+    });
     const id = getIdInput.value;
     fetch(url + id)
       .then(res => {
@@ -62,6 +77,12 @@ function getUserById(event) {
 function addUser(event) {
   event.preventDefault();
   if (event.target === addUserBtn) {
+    result.textContent = "";
+    arrInputs.map(el => {
+      if(el !== nameInput && el !== ageInput){
+        el.value = "";
+      }
+    });
     const name = nameInput.value;
     const age = ageInput.value;
     const addingUSer = {
@@ -89,6 +110,12 @@ function addUser(event) {
 function removeUser(event) {
   event.preventDefault();
   if (event.target === removeUserBtn) {
+    result.textContent = "";
+    arrInputs.map(el => {
+      if(el !== removeIdInput){
+        el.value = "";
+      }
+    });
     const id = removeIdInput.value;
     fetch(url + id, {
       method: "DELETE"
