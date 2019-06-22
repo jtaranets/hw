@@ -1,0 +1,30 @@
+img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.container{
+    display: flex;
+}
+.result{
+    width: 80%;
+}
+.form{
+    width: 20%;
+}
+
+.laptops-list{
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.laptop-item{
+    width: 450px;
+}
+
+.laptop-image{
+    
+}
