@@ -60,10 +60,10 @@ const timer = {
     }, 100);
     console.log(this.id);
     startBtn.textContent = "Pause";
-    console.log("continue currentTime", this.currentTime);
-    console.log("continue timeAtPause", this.timeAtPause);
-    console.log("continue startTime", this.startTime);
-    console.log("continue deltaTime", this.deltaTime);
+    console.log("continue currentTime", this.currentTime / 1000);
+    console.log("continue timeAtPause", this.timeAtPause / 1000);
+    console.log("continue startTime", this.startTime / 1000);
+    console.log("continue deltaTime", this.deltaTime / 1000);
   },
   reset: function(){
 if (this.timerIsActive){
