@@ -1,0 +1,29 @@
+img{
+    display: block;
+    height: auto;
+    width: 100%;
+}
+
+.url-list{
+    list-style: none;
+}
+
+// .url-item{
+//     height: 20vh;
+// }
+
+.add-btn{
+    background-color: #1EC9E8;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    min-height: 21.33px;
+}
+
+.delete-btn{
+    background-color: #B7D4FF;
+}
+
+.url-img{
+    width: 250px;
+}

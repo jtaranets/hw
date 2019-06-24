@@ -2,7 +2,7 @@
 
 var form = document.querySelector(".main-form");
 var input = form.querySelector("input");
-var url = "http://api.linkpreview.net/?key=5d0a4f2789c534b287f908bc71183ecd837b69d417c1a&q=";
+var url = "https://api.linkpreview.net/?key=5d0a4f2789c534b287f908bc71183ecd837b69d417c1a&q=";
 var box = document.querySelector(".url-list");
 var linkAdder = {
   linkAlredyExists: false,

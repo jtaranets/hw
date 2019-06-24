@@ -1,7 +1,7 @@
 const form = document.querySelector(".main-form");
 const input = form.querySelector("input");
 const url =
-  "https://api.linkpreview.net/?key=5d0a4f2789c534b287f908bc71183ecd837b69d417c1a&q=";
+  "http://api.linkpreview.net/?key=5d0a4f2789c534b287f908bc71183ecd837b69d417c1a&q=";
 const box = document.querySelector(".url-list");
 
 const linkAdder = {
