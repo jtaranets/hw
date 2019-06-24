@@ -1,5 +1,3 @@
-// import "./style.scss";
-
 const form = document.querySelector(".main-form");
 const input = form.querySelector("input");
 const url =
@@ -11,7 +9,7 @@ const linkAdder = {
   linkURL: null,
   deleteBtn: null,
   resArr: [],
-  resArrUnique: [],
+  filteredArr: null,
   linkValidator: /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/,
   creatingCards: function(input, data, output) {
     const source = document.querySelector(input).innerHTML.trim();
@@ -19,22 +17,17 @@ const linkAdder = {
     const res = template(data);
     output.insertAdjacentHTML("afterbegin", res);
   },
-  deleteCard: function(id, array) {
+  deleteCard: function(id, array, filter){
     id.addEventListener("click", e => {
       const elTarget = e.target.parentNode;
-      const deletedLink = e.target.previousElementSibling.href;
-      console.log(deletedLink);
       console.log(e.target.previousElementSibling.href);
-      // array = array.filter(el => el.url !== deletedLink);
-      const indOfDelCard = array.forEach(el => {
-        if (el.url === deletedLink) {
-          array.splice(array.indexOf(el), 1);
-        }
-      });
-      console.log("array", array);
-      localStorage.setItem("wasOpened", JSON.stringify(array));
+      filter = array.filter(
+        el => el.url !== e.target.previousElementSibling.href
+      );
+      console.log("Array filt", filter);
       console.log(elTarget);
       elTarget.remove();
+      localStorage.setItem("wasOpened", JSON.stringify(filter));
     });
     form.reset();
   },
@@ -54,12 +47,22 @@ const linkAdder = {
         if (this.linkValidator.test(input.value)) {
           console.log(data);
           this.creatingCards("#url-holder", data, box);
-          this.resArr.push(data);
+          // this.resArr.forEach(el => {
+          //   if(el !== data){
+          //     this.resArr.push(data)
+          //   }
+          //   return
+          // })
+          if (this.resArr.includes(data)) {
+            console.log("catattaj");
+          } else {
+            this.resArr.push(data);
+          }
           console.log(this.resArr);
+          localStorage.setItem("wasOpened", JSON.stringify(this.resArr));
         }
         this.deleteBtn = document.querySelector(".delete-btn");
-        this.deleteCard(this.deleteBtn, this.resArr);
-        localStorage.setItem("wasOpened", JSON.stringify(this.resArr));
+        this.deleteCard(this.deleteBtn, this.resArr, this.filteredArr);
       });
   },
   funct: function(e) {
@@ -84,28 +87,20 @@ const linkAdder = {
       this.linkAlredyExists = false;
     }
     console.log(this.linkAlredyExists);
-  },
-  reloading: function() {
-    const check = localStorage.getItem("wasOpened");
-    const checkToObj = JSON.parse(check);
-    console.log(check);
-    console.log(checkToObj);
-    if (check) {
-      if (checkToObj.length > 0) {
-        checkToObj.forEach(el => this.resArr.push(el));
-        console.log("resArr", this.resArr);
-        this.creatingCards("#url-holder-saved-cards", checkToObj, box);
-        const deleteBtns = document.querySelectorAll(".delete-btn");
-        deleteBtns.forEach(el => this.deleteCard(el, this.resArr));
-        // this.deleteCard(deleteBtn, this.resArr);
-      }
-    } else {
-      return;
-    }
   }
 };
 
-window.onload = linkAdder.reloading();
+window.onload = function() {
+  const check = localStorage.getItem("wasOpened");
+  if (check) {
+    const checkToObg = JSON.parse(check);    linkAdder.creatingCards("#url-holder-saved-cards", checkToObg, box);
+    const deleteBtn = document.querySelector(".delete-btn");
+    if(checkToObg.length > 0){
+      linkAdder.deleteCard(deleteBtn, linkAdder.resArr, linkAdder.filteredArr);
+    }
+  } else {
+    return;
+  }
+};
 form.addEventListener("submit", linkAdder.linkPreview.bind(linkAdder));
 form.addEventListener("input", linkAdder.funct.bind(linkAdder));
-
