@@ -4,6 +4,7 @@ var gulp = require("gulp");
 var babel = require("gulp-babel");
 const autoprefixer = require('gulp-autoprefixer');
 var sass = require('gulp-sass');
+var deploy = require('gulp-gh-pages');
  
 sass.compiler = require('node-sass');
  
@@ -66,3 +67,8 @@ var path = {
     });
 
     gulp.task('build', gulp.series('html:build', 'js:build', 'style:build'));
+
+    gulp.task('deploy', gulp.series('build'), function () {
+        return gulp.src("./dist/**/*")
+          .pipe(deploy())
+      });
