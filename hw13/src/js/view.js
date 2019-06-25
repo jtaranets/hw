@@ -6,8 +6,12 @@ export default class View extends EventEmitter {
     this.form = document.querySelector(".main-form");
     this.input = this.form.querySelector("input");
     this.box = document.querySelector(".url-list");
-    this.urlHolder = document.querySelector('#url-holder');
-    this.urlHolderderForLists = document.querySelector('#url-holder-saved-cards');
+    this.urlHolder = document.querySelector("#url-holder");
+    this.urlHolderderForLists = document.querySelector(
+      "#url-holder-saved-cards"
+    );
+    this.deleteBtn = null;
+    this.deleteBtns = null;
   }
   creatingCards(input, data, output) {
     const source = input.innerHTML.trim();
@@ -16,26 +20,43 @@ export default class View extends EventEmitter {
     const res = template(data);
     output.insertAdjacentHTML("afterbegin", res);
   }
-  deleteCard(e) {
-    const elTarget = e.target.parentNode;
+  addCard(e) {
+    e.preventDefault();
+    const inputValue = this.input.value;
+    this.emit("add", inputValue);
+    this.form.reset();
+  }
+  deleteCard(id) {
+    const elTarget = id.parentNode;
     elTarget.remove();
-    form.reset();
-    return e.target;
+    this.form.reset();
   }
-  addCard(e){
-      e.preventDefault();
-      const inputValue = this.input.value;
-      this.emit('add', inputValue)
-      this.form.reset();
+  removeCard(e) {
+    const elem = e.target;
+    this.emit("delete", elem);
   }
-  linkExists(){
+  removeCardListener(el) {
+    el.addEventListener("click", this.removeCard.bind(this));
+  }
+  onChange(e) {
+    const target = e.target.value;
+    this.emit("checkIfExists", target);
+  }
+  handleExists() {
     alert("such link already exists");
-    form.reset();
+    this.form.reset();
+  }
+  onReload() {
+    this.emit('reloading', 'fjfkldfjk')
+  }
+  reloading(){
+    this.deleteBtns = document.querySelectorAll(".delete-btn");
+    this.deleteBtns.forEach(el => this.removeCardListener(el));
   }
 
   eventListeners() {
-    const deleteBtn = document.querySelector(".delete-btn");
-    // deleteBtn.addEventListener("click", this.deleteCard.bind(this));
-    this.form.addEventListener('submit', this.addCard.bind(this));
+    this.form.addEventListener("input", this.onChange.bind(this));
+    this.form.addEventListener("submit", this.addCard.bind(this));
+    
   }
 }
