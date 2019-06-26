@@ -91,76 +91,28 @@ const laptops = [
   }
 ];
 
-const filter = { size: [], color: [], release_date: [] };
+// const filter = { size: [], color: [], release_date: [] };
+const form = document.querySelector(".form");
 
 function filtered(evt) {
   evt.preventDefault();
   const chosen = Array.from(
     document.querySelectorAll('input[type="checkbox"]:checked')
   );
-  chosen.forEach(el => {
-    filter[el.name].push(el.value);
-  });
-  chosen.map(el => el.checked === false);
   // console.log(chosen);
-  // console.log(filter);
-  // const keys = Object.keys(filter);
-  // const o = keys.forEach(el => filter[el]);
-  // console.log(o);
-
-  // if (laptops.map(el => Object.values(el)).includes(filter.size[0])){
-  //   console.log('works');
-  // }
-  // laptops.map(el => console.log(Object.values(el)));
-  // if (laptops.map(el => Object.values(el)).includes(13)){
-  //   console.log('hey');
-  // }
-  const gu = [];
-  // const res = filter.size.forEach(size =>{
-  //   const lapSize = laptops.forEach(laptop =>{
-  //   const sizeToNumb = parseInt(size);
-  //   if(laptop.size === sizeToNumb){
-  //     gu.push(laptop);
-  //     console.log(gu);
-  //   }
-  //   return gu
-  // })
-  // console.log(lapSize);
-  // })
-  // const res = laptops.filter(el => {
-  //   let res;
-  //   if (filter.size) {
-  //     const sizeFilt = filter.size.forEach(size => {
-  //       const sizeToNumb = parseInt(size);
-  //       // return sizeToNumb;
-  //       if (el.size === sizeToNumb) {
-  //         console.log(el);
-  //         res = el
-  //         return res;
-  //       }
-  //     });
-  //     console.log(res);
-  //     // return sizeFilt
-  //   } if(filter.color){
-
-  //   }
-  //   // console.log(sizeFilt);
+  // chosen.forEach(el => {
+  //   filter[el.name].push(el.value);
   // });
-  // console.log(gu);
+  const filter = chosen.reduce((acc, el) => {
+acc[el.name] ? acc[el.name].push(el.value) : (acc[el.name] = [el.value]);
+return acc
+  },{})
+  form.reset();
 
-  // const res = laptops.filter(laptop => {
-  //   const sizes = filter.size.forEach(size => {
-  //     const sizeToNumb = parseInt(size);
-  //     return sizeToNumb;
-  //   })
-  //   return laptop.size === sizes
-  //   // console.log(sizes);
-  // })
-
-  // console.log(res);
-
-  const res = Object.keys(filter).reduce(
-    (a, e) => a.filter(elem => console.log(a)),
+  console.log(filter);
+//   chosen.map(el => el.checked === false);
+  const laptopsRes = Object.keys(filter).reduce(
+    (acc, el) => acc.filter(elem => filter[el].includes("" + elem[el])),
     laptops
   );
 
@@ -168,7 +120,7 @@ function filtered(evt) {
 }
 
 const submit = document.querySelector('button[type="submit"]');
-const form = document.querySelector(".form");
+// const form = document.querySelector(".form");
 console.log(form);
 form.addEventListener("submit", filtered);
 
@@ -178,6 +130,9 @@ const template = Handlebars.compile(elem);
 // console.log(template);
 
 const result = template(laptops);
+if(laptopsRes){
+  const result = template(laptopsRes);
+}
 // console.log(result);
 const container = document.querySelector(".result");
 container.innerHTML = result;
