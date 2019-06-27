@@ -91,48 +91,41 @@ const laptops = [
   }
 ];
 
-// const filter = { size: [], color: [], release_date: [] };
 const form = document.querySelector(".form");
+const container = document.querySelector(".result");
+const elem = document.getElementById("laptops-template")
+
+
+
+function showLaptops(input, data, output) {
+  const elem = input.innerHTML.trim();
+  const template = Handlebars.compile(elem);
+  const res = template(data);
+  output.innerHTML = res;
+}
 
 function filtered(evt) {
   evt.preventDefault();
   const chosen = Array.from(
     document.querySelectorAll('input[type="checkbox"]:checked')
   );
-  // console.log(chosen);
-  // chosen.forEach(el => {
-  //   filter[el.name].push(el.value);
-  // });
   const filter = chosen.reduce((acc, el) => {
 acc[el.name] ? acc[el.name].push(el.value) : (acc[el.name] = [el.value]);
 return acc
   },{})
   form.reset();
-
-  console.log(filter);
-//   chosen.map(el => el.checked === false);
   const laptopsRes = Object.keys(filter).reduce(
     (acc, el) => acc.filter(elem => filter[el].includes("" + elem[el])),
     laptops
   );
-
-  console.log(res);
+  console.log(laptopsRes);
+  showLaptops(elem, laptopsRes, container);
+return laptopsRes
 }
 
 const submit = document.querySelector('button[type="submit"]');
 // const form = document.querySelector(".form");
 console.log(form);
 form.addEventListener("submit", filtered);
-
-const elem = document.getElementById("laptops-template").innerHTML.trim();
-
-const template = Handlebars.compile(elem);
-// console.log(template);
-
-const result = template(laptops);
-if(laptopsRes){
-  const result = template(laptopsRes);
-}
-// console.log(result);
-const container = document.querySelector(".result");
-container.innerHTML = result;
+  
+showLaptops(elem, laptops, container)
